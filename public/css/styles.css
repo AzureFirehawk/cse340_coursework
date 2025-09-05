@@ -15,6 +15,37 @@
 header {
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.siteName a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 700;
+}
+
+#tools a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--dark);
+}
+
+nav {
+  padding: 1rem 0;
+  background-color: var(--dark);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--light);
 }
 
 body {
@@ -30,7 +61,6 @@ body {
 
 #wrapper {
   background: white;
-  padding: 2rem;
   border-radius: 12px;
   border: aqua 5px solid;
   max-width: 800px;
