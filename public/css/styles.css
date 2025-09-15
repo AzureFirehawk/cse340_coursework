@@ -48,6 +48,15 @@ nav ul {
   color: var(--light);
 }
 
+nav li:hover {
+  cursor: pointer;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--light);
+}
+
 body {
   margin: 0;
   padding: 10px;
