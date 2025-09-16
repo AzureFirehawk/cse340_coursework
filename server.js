@@ -31,6 +31,11 @@ app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
+// 404 route
+app.use(async (req, res, next) => {
+  next({ status: 404, message: "We lost this page, but at least we still have our car keys!" })
+})
+
 /* ************************
  * Express Error Handler
  * Place after all other middleware
