@@ -25,4 +25,22 @@ async function getInventoryByClassificationId(classification_id) {
     }
 }
 
+/* *************************
+ * Get specific vehicle by inv_id
+ * ************************* */
+async function getInventoryById(inv_id) {
+    try {
+        const data = await pool.query(
+            `SELECT * FROM public.inventory AS i
+            Join public.classification AS c
+            ON i.classification_id = c.classification_id
+            WHERE i.inv_id = $1`,
+            [inv_id]
+        )
+        return data.rows[0];
+    } catch (error) {
+        console.error("getclassificationsbyid error " + error);
+    }
+}
+
 module.exports = { getClassifications, getInventoryByClassificationId };
