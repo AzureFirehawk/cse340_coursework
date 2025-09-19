@@ -58,6 +58,28 @@ Util.buildClassificationGrid = async function(data) {
 }
 
 /* ***************************************
+ * Build the vehicle view HTML
+ * ************************************ */
+Util.buildVehicle = function (data) {
+    let vehicle
+    if (data) {
+        vehicle += '<div id="vehicle-display">';
+        vehicle += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model} on CSE Motors">`;
+        vehicle += '<div class="vehicle-details">';
+        vehicle += `<h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>`;
+        vehicle += `<p><strong>Price:</strong> $${new Intl.NumberFormat("en-US").format(data.inv_price)}</p>`;
+        vehicle += `<p><strong>Miles:</strong> ${new Intl.NumberFormat("en-US").format(data.inv_miles)}</p>`;
+        vehicle += `<p><strong>Color:</strong> ${data.inv_color}</p>`;
+        vehicle += `<p>${data.inv_description}</p>`;
+        vehicle += '</div>';
+        vehicle += '</div>';
+    } else {
+        vehicle += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+    }
+    return vehicle;
+}
+
+/* ***************************************
  * Middleware for Handling Errors
  * Wrap other function in this for
  * General Error Handling
