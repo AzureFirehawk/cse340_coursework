@@ -4,11 +4,8 @@ const errorController = {};
  * Force a server-side error
  ************************** */
 errorController.throwError = (req, res, next) => {
-    try {
-        throw new Error("Intentional server error for testing purposes.");
-    } catch (error) {
-        next(error);
-    }
+    const result = nonexistentFunction();
+    res.send(result);
 }
 
 module.exports = errorController;

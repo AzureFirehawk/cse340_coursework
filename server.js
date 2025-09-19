@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
+const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -31,6 +32,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
+// Error route
+app.use("/error", errorRoute)
+
 // 404 route
 app.use(async (req, res, next) => {
   next({ status: 404, message: "We lost this page, but at least we still have our car keys!" })
@@ -43,13 +47,22 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
-  if (err.status == 404) { message = err.message} else { message = "Oh dear, looks like something broke. Maybe try a different route?" }
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
+  
+  const status = err.status || 500;
+  let message;
+  if (status == 404) {
+    message = err.message;
+  } else if (status == 500) {
+    message = "Looks like we have a problem. We'll get it fixed soon.";
+  } else {
+    message = "Oh dear, looks like something broke. Maybe try a different route?";
+  }
+  res.status(status).render("errors/error", {
+    title: status,
     message,
     nav
-  })
-})
+  });
+});
 
 /* ***********************
  * Local Server Information
