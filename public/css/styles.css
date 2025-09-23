@@ -244,7 +244,7 @@ h1 {
   line-height: 1.5;
 }
 
-/* Login form */
+/* Login/register form */
 .account-form form {
   max-width: 400px;
   margin: 2rem auto;
