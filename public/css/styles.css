@@ -9,7 +9,7 @@
   --primary: #ddd;
   --dark: #333;
   --light: #fff;
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+  --shadow: 0 1px 5px #686868cc;
 }
 
 header {
@@ -72,7 +72,7 @@ body {
   padding: 0 1rem;
   background: white;
   border-radius: 12px;
-  border: steelblue 5px solid;
+  border: #4682b4 5px solid;
   max-width: 1000px;
   width: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -242,6 +242,74 @@ h1 {
 .vehicle-details p {
   margin: 0.25rem 0;
   line-height: 1.5;
+}
+
+/* Login form */
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--light);
+  border: 1px solid var(--dark);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+form label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+form input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 4px rgba(0, 119, 204, 0.2);
+}
+
+form button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: steelblue;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+form button:hover {
+  background: rgb(10, 90, 156);
+}
+
+form h2 {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-weight: normal;
+  text-align: center;
+  color: #444;
+}
+
+form h2 a {
+  color: steelblue;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+form h2 a:hover {
+  text-decoration: underline;
 }
 
 /* larger screens */
