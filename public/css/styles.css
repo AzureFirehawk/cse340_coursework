@@ -274,7 +274,6 @@ h1 {
 
 .account-form input:focus {
   outline: none;
-  border-color: #0077cc;
   box-shadow: 0 0 4px rgba(0, 119, 204, 0.2);
 }
 
@@ -310,6 +309,27 @@ h1 {
 
 .account-form h2 a:hover {
   text-decoration: underline;
+}
+
+.account-form p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #444;
+}
+
+.account-form li {
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #444;
+}
+
+.account-form input:required:invalid:focus {
+  border-color: #ff0000;
+}
+
+.account-form input:required:valid {
+  border-color: #00ff00;
 }
 
 /* larger screens */
