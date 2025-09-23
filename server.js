@@ -14,6 +14,8 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const errorRoute = require("./routes/errorRoute")
+const session = require("express-session")
+const pool = require("./database/")
 
 /* ***********************
  * View Engine and Templates
