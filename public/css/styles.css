@@ -245,7 +245,7 @@ h1 {
 }
 
 /* Login form */
-form {
+.account-form form {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -259,12 +259,12 @@ form {
   font-family: Arial, sans-serif;
 }
 
-form label {
+.account-form label {
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
-form input {
+.account-form input {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -272,13 +272,13 @@ form input {
   transition: border-color 0.2s;
 }
 
-form input:focus {
+.account-form input:focus {
   outline: none;
   border-color: #0077cc;
   box-shadow: 0 0 4px rgba(0, 119, 204, 0.2);
 }
 
-form button {
+.account-form button {
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: 600;
@@ -290,11 +290,11 @@ form button {
   transition: background 0.2s;
 }
 
-form button:hover {
+.account-form button:hover {
   background: rgb(10, 90, 156);
 }
 
-form h2 {
+.account-form h2 {
   margin-top: 1rem;
   font-size: 0.95rem;
   font-weight: normal;
@@ -302,13 +302,13 @@ form h2 {
   color: #444;
 }
 
-form h2 a {
+.account-form h2 a {
   color: rgb(28, 63, 92);
   text-decoration: none;
   font-weight: 600;
 }
 
-form h2 a:hover {
+.account-form h2 a:hover {
   text-decoration: underline;
 }
 
