@@ -16,6 +16,7 @@ const utilities = require("./utilities/")
 const errorRoute = require("./routes/errorRoute")
 const session = require("express-session")
 const pool = require("./database/")
+const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
@@ -54,6 +55,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 // Error route
 app.use("/error", errorRoute)
