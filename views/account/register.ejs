@@ -20,11 +20,11 @@
 <div class="account-form">
     <form action="/account/register" method="post">
         <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="account_firstname" required>    
+        <input type="text" id="firstName" name="account_firstname" required value="<%= locals.account_firstname %>">    
         <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="account_lastname" required>   
+        <input type="text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">   
         <label for="email">Email</label>
-        <input type="email" id="email" name="account_email" required placeholder="Enter a valid email address">    
+        <input type="email" id="email" name="account_email" required placeholder="Enter a valid email address" value="<%= locals.account_email %>">    
         <label for="password">Password</label>
         <input type="password" id="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
         <div class="password-requirements">
