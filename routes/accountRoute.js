@@ -19,4 +19,6 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
 );
 
+// Teporary login attempt processing
+
 module.exports = router;
