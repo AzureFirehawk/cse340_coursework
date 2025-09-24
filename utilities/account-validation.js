@@ -26,11 +26,16 @@ validate.registrationRules = () => {
         // Valid email is required and cannot already exist in DB
         body("account_email")
             .trim()
-            .escape()
             .notEmpty()
             .isEmail()
             .normalizeEmail() 
-            .withMessage("A valid email is required."), // Message sent on error
+            .withMessage("A valid email is required.") // Message sent on error
+            .custon(async (account_email) => {
+                const emailExists = await accountModel.checkExistingEmail(account_email);
+                if (emailExists) {
+                    throw new Error("Email already in use. Please use a different email.");
+                }
+            }),
         
         // password is required and must be strong password
         body("account_password")
