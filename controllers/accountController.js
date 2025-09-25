@@ -1,6 +1,7 @@
 // Needed resources
 const utilities = require("../utilities/");
 const accountModel = require("../models/account-model");
+const bcrypt = require("bcryptjs");
 
 /* ********************************
  * Deliver Login view
@@ -10,6 +11,7 @@ async function buildLogin(req, res, next) {
     res.render("account/login", {
         title: "Login",
         nav,
+        errors: null
     })
 }
 
