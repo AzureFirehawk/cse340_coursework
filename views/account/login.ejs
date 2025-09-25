@@ -8,13 +8,24 @@
 <!-- Message block -->
 <%- messages() %>
 
+<!-- Error block -->
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+        <% }); %>
+    </ul>
+<% } %>
+
 <!-- Login form -->
 <div class="account-form">
-    <form action="/login" method="post">
+    <form action="/account/login" method="post">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="account_email" id="loginEmail" required value="<%= locals.account_email %>">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <input type="password" name="account_password" id="loginPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
         <button type="submit">Login</button>
         <h2>No account? <a href="/account/register">Register</a></h2>
     </form>
