@@ -1,0 +1,12 @@
+<!-- Content Heading. Determine if Title exists, otherwise redirect to home -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+<% } else { res.redirect('/'); } %>
+
+<!-- Message block for future use -->
+<%- messages() %>
+
+<!-- Inventory items display using "grid" variable from controller -->
+<%- manage %>
