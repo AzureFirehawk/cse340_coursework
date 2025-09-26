@@ -3,10 +3,13 @@ const express = require("express");
 const router = new express.Router();
 const invController = require("../controllers/invController");
 
-//  Route to build inventory by classification view
+// Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
-//  Route to build inventory by inventory_id view
+// Route to build inventory by inventory_id view
 router.get("/detail/:invId", invController.buildByInventoryId);
+
+// Route to build the inventory management view
+router.get("/", invController.buildManagement);
 
 module.exports = router;
