@@ -31,4 +31,12 @@ invCont.buildByInventoryId = async function (req, res, next) {
     })
 }
 
+/* *****************************
+ * Build management view
+ * ***************************** */
+invCont.buildManagement = async function (req, res, next) {
+    
+}
+
+
 module.exports = invCont;
