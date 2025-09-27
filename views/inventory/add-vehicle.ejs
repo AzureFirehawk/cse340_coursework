@@ -30,7 +30,7 @@
         <label for="invModel">Model</label>
         <input type="text" id="invModel" name="inv_model" required value="<%= locals.inv_model %>" pattern="^[a-zA-Z ]+$" placeholder="Min. 3 characters">
         <label for="invYear">Year</label>
-        <input type="text" id="invYear" name="inv_year" required value="<%= locals.inv_year %>" pattern="^[0-9]+$" placeholder="4-digit year" max="9999">
+        <input type="number" id="invYear" name="inv_year" required value="<%= locals.inv_year %>" placeholder="4-digit year" max="9999">
         <label for="invColor">Color</label>
         <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>" pattern="^[a-zA-Z]+$">
         <label for="invDescription">Description</label>
