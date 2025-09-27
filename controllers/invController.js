@@ -28,6 +28,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
         title: data.inv_make + " " + data.inv_model,
         nav,
         vehicle,
+        errors: null
     })
 }
 
@@ -35,7 +36,12 @@ invCont.buildByInventoryId = async function (req, res, next) {
  * Build management view
  * ***************************** */
 invCont.buildManagement = async function (req, res, next) {
-    
+    let nav = await utilities.getNav();
+    res.render("./inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null
+    }) 
 }
 
 
