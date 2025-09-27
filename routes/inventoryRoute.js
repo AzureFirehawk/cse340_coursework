@@ -21,12 +21,18 @@ router.get("/add-class", invController.buildAddClassification);
 router.get("/add-vehicle", invController.buildAddVehicle);
 
 // Form submissions
-
 router.post(
     "/add-class",
     manValidate.classificationRules(),
     manValidate.checkClassData,
     utilities.handleErrors(invController.addClass)
+)
+
+router.post(
+    "/add-vehicle",
+    manValidate.vehicleRules(),
+    manValidate.checkVehicleData,
+    utilities.handleErrors(invController.addVehicle)
 )
 
 module.exports = router;
