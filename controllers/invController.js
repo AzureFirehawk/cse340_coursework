@@ -1,3 +1,4 @@
+const e = require("connect-flash");
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
@@ -55,6 +56,19 @@ invCont.buildAddClassification = async function (req, res, next) {
         errors: null
     }) 
 }
+
+invCont.addClass= async function (req, res, next) {
+    let nav = await utilities.getNav();
+    const { classification_name } = req.body;
+    const addResult = await invModel.addClassification(classification_name);
+    if (addResult) {
+        req.flash("notice", "Classification added.");
+        res.status(201).redirect("/inv/");
+    } else {
+        req.flash("notice", "Error adding classification.");
+        res.status(500).redirect("/inv/add-class");
+    }
+} 
 
 
 module.exports = invCont;
