@@ -12,4 +12,7 @@ router.get("/detail/:invId", invController.buildByInventoryId);
 // Route to build the inventory management view
 router.get("/", invController.buildManagement);
 
+// Route to build the add classification view
+router.get("/add-class", invController.buildAddClassification);
+
 module.exports = router;

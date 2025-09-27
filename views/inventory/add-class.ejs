@@ -18,13 +18,14 @@
         <% }); %>
     </ul>
 <% } %>
+
 <!-- Add Classification form -->
 <div class="management-form">
     <form action="/management/add-class" method="post">
         <fieldset>
             <legend>Classification Name</legend>
-            <label for="classificationName">Classification Name</label>
-            <input type="text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>">
+            <label for="classificationName">*Name must be alphabetic characters only</label>
+            <input type="text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>" pattern="^[a-zA-Z ]+$">
         </fieldset>
     </form>
 </div>
