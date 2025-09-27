@@ -20,13 +20,11 @@
 <% } %>
 
 <!-- Add Classification form -->
-<div class="management-form">
-    <form action="/management/add-class" method="post">
-        <fieldset>
-            <legend>Classification Name</legend>
-            <label for="classificationName">*Name must be alphabetic characters only</label>
-            <input type="text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>" pattern="^[a-zA-Z ]+$">
-            <button type="submit">Add Classification</button>
-        </fieldset>
+<div class="account-form">
+    <form action="/inv/add-class" method="post">
+        <legend>Classification Name</legend>
+        <label for="classificationName">*Name must be alphabetic characters only</label>
+        <input type="text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>" pattern="^[a-zA-Z]+$">
+        <button type="submit">Add Classification</button>
     </form>
 </div>

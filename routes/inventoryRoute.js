@@ -1,6 +1,8 @@
 // Needed resources
 const express = require("express");
 const router = new express.Router();
+const manValidate = require("../utilities/management-validation");
+const utilities = require("../utilities/");
 const invController = require("../controllers/invController");
 
 // Route to build inventory by classification view
@@ -14,5 +16,12 @@ router.get("/", invController.buildManagement);
 
 // Route to build the add classification view
 router.get("/add-class", invController.buildAddClassification);
+
+router.post(
+    "/add-class",
+    manValidate.classificationRules(),
+    manValidate.checkClassData,
+    utilities.handleErrors(invController.addClass)
+)
 
 module.exports = router;

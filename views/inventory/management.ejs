@@ -8,6 +8,16 @@
 <!-- Message block for future use -->
 <%- messages() %>
 
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+        <% }); %>
+    </ul>
+<% } %>
+
 <!-- Vehicle Management links -->
 <div id="management-links">
     <a href="/inv/add-class" title="Add Classification">Add New Classification</a>
