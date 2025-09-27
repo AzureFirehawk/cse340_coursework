@@ -85,6 +85,17 @@ invCont.buildAddVehicle = async function (req, res, next) {
     }) 
 }
 
-
+invCont.addVehicle = async function (req, res, next) {
+    let nav = await utilities.getNav();
+    const { inv_make, inv_model, inv_year, inv_color, inv_image, inv_thumbnail, inv_price, inv_miles, inv_description, classification_id } = req.body;
+    const addResult = await invModel.addVehicle(inv_make, inv_model, inv_year, inv_price, inv_image, inv_thumbnail, inv_description, inv_miles, inv_color, classification_id);
+    if (addResult) {
+        req.flash("notice", "Vehicle added to inventory.");
+        res.status(201).redirect("/inv/");
+    } else {
+        req.flash("notice", "Error adding vehicle.");
+        res.status(500).redirect("/inv/add-vehicle");
+    }
+}
 
 module.exports = invCont;
