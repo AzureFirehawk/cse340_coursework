@@ -46,7 +46,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* *****************************
- * Build add classification view
+ * Add classification view
  * ***************************** */
 invCont.buildAddClassification = async function (req, res, next) {
     let nav = await utilities.getNav();
@@ -69,6 +69,18 @@ invCont.addClass= async function (req, res, next) {
         res.status(500).redirect("/inv/add-class");
     }
 } 
+
+/* *****************************
+ * Add vehicle view
+ * ***************************** */
+invCont.buildAddVehicle = async function (req, res, next) {
+    let nav = await utilities.getNav();
+    res.render("./inventory/add-vehicle", {
+        title: "Add Vehicle",
+        nav,
+        errors: null
+    }) 
+}
 
 
 module.exports = invCont;
