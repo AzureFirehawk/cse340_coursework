@@ -332,6 +332,15 @@ h1 {
   border-color: #00ff00;
 }
 
+/* Management views */
+
+#management-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
 /* larger screens */
 
 @media screen and (min-width: 725px) {
