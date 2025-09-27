@@ -17,6 +17,11 @@ router.get("/", invController.buildManagement);
 // Route to build the add classification view
 router.get("/add-class", invController.buildAddClassification);
 
+// Route to build the add vehicle view
+router.get("/add-vehicle", invController.buildAddVehicle);
+
+// Form submissions
+
 router.post(
     "/add-class",
     manValidate.classificationRules(),
