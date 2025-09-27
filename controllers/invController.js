@@ -74,13 +74,15 @@ invCont.addClass= async function (req, res, next) {
  * Add vehicle view
  * ***************************** */
 invCont.buildAddVehicle = async function (req, res, next) {
+    const data = await invModel.getClassifications();
+    const classificationList = await utilities.buildClassificationList(data);
     let nav = await utilities.getNav();
     res.render("./inventory/add-vehicle", {
         title: "Add Vehicle",
         nav,
+        classificationList,
         errors: null
     }) 
 }
-
 
 module.exports = invCont;
