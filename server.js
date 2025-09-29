@@ -48,6 +48,9 @@ app.use(parser.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());
 
+// JWT Middleware
+app.use(utilities.checkJWTToken);
+
 /* ***********************
  * View Engine and Templates
  *************************/
