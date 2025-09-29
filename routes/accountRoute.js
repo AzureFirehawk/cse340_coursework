@@ -19,14 +19,12 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
 );
 
-// Temporary login attempt processing
+// Login Processing
 router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    (req, res) => {
-        res.status(200).send('login process')
-    }
-)
+    utilities.handleErrors(accountController.accountLogin)
+);
 
 module.exports = router;
