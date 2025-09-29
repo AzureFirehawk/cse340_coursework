@@ -5,7 +5,10 @@ const utilities = require("../utilities/");
 const regValidate = require("../utilities/account-validation");
 const accountController = require("../controllers/accountController");
 
-// Route to build account view
+// Route to build home view
+router.get("/", utilities.handleErrors(accountController.buildAccount));
+
+// Route to build login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
 // Route to build register view
