@@ -341,6 +341,33 @@ h1 {
   padding: 0 2rem;
 }
 
+table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tr:hover {
+  background-color: #f1f7ff;
+}
+
+
 /* larger screens */
 
 @media screen and (min-width: 725px) {
