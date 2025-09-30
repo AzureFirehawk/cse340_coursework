@@ -21,7 +21,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 invCont.buildByInventoryId = async function (req, res, next) {
-    const inv_id = req.params.invId;
+    const inv_id = req.params.inv_id;
     const data = await invModel.getVehicleById(inv_id);
     const vehicle = await utilities.buildVehicle(data);
     let nav = await utilities.getNav();
@@ -118,10 +118,10 @@ invCont.addVehicle = async function (req, res, next) {
  * Edit vehicle view
  * ***************************** */
 invCont.editInventoryView = async function (req, res, next) {
-    const inv_id = parsInt(req.params.inv_id);
+    const inv_id = parseInt(req.params.inv_id);
     let nav = await utilities.getNav();
     const itemData = await invModel.getVehicleById(inv_id);
-    const classificationList = await utilities.buildClassificationList(data);
+    const classificationList = await utilities.buildClassificationList(itemData.classification_id);
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
     res.render("./inventory/edit-vehicle", {
         title: "Edit " + itemName,
