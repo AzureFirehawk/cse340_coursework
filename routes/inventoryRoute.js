@@ -9,7 +9,7 @@ const invController = require("../controllers/invController");
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
 // Route to build inventory by inventory_id view
-router.get("/detail/:invId", invController.buildByInventoryId);
+router.get("/detail/:inv_id", invController.buildByInventoryId);
 
 // Route to build the inventory management view
 router.get("/", invController.buildManagement);
@@ -24,7 +24,7 @@ router.get("/add-vehicle", invController.buildAddVehicle);
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
 // Route to build the edit vehicle view
-router.get("/edit/:invId", utilities.handleErrors(invController.editInventoryView));
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
 
 // Form submissions
 router.post(
