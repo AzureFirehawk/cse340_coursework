@@ -114,4 +114,32 @@ invCont.addVehicle = async function (req, res, next) {
     }
 }
 
+/* *****************************
+ * Edit vehicle view
+ * ***************************** */
+invCont.editInventoryView = async function (req, res, next) {
+    const inv_id = parsInt(req.params.inv_id);
+    let nav = await utilities.getNav();
+    const itemData = await invModel.getVehicleById(inv_id);
+    const classificationList = await utilities.buildClassificationList(data);
+    const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+    res.render("./inventory/edit-vehicle", {
+        title: "Edit " + itemName,
+        nav,
+        classificationList,
+        errors: null,
+        inv_id: itemData.inv_id,
+        inv_make: itemData.inv_make,
+        inv_model: itemData.inv_model,
+        inv_year: itemData.inv_year,
+        inv_price: itemData.inv_price,
+        inv_image: itemData.inv_image,
+        inv_thumbnail: itemData.inv_thumbnail,
+        inv_description: itemData.inv_description,
+        inv_miles: itemData.inv_miles,
+        inv_color: itemData.inv_color,
+        classification_id: itemData.classification_id
+    }) 
+}
+
 module.exports = invCont;
