@@ -23,6 +23,9 @@ router.get("/add-vehicle", invController.buildAddVehicle);
 // Route for management table view
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
+// Route to build the edit vehicle view
+router.get("/edit/:invId", utilities.handleErrors(invController.editInventoryView));
+
 // Form submissions
 router.post(
     "/add-class",
