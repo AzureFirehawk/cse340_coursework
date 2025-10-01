@@ -41,6 +41,11 @@ router.post(
     utilities.handleErrors(invController.addVehicle)
 )
 
-router.post("/update/", utilities.handleErrors(invController.updateVehicle))
+router.post(
+    "/update/",
+    manValidate.vehicleRules(),
+    manValidate.checkVehicleData,
+    utilities.handleErrors(invController.updateVehicle)
+)
 
 module.exports = router;
