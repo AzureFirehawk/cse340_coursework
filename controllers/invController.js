@@ -195,4 +195,30 @@ invCont.confirmDeleteView = async function (req, res, next) {
     }) 
 }
 
+/* *****************************
+ * Process vehicle deletion
+ * ***************************** */
+invCont.deleteVehicle = async function (req, res, next) {
+    let nav = await utilities.getNav();
+    const { inv_id } = req.body;
+    const deleteResult = await invModel.deleteVehicle(inv_id);
+    const itemName = `${deleteResult.inv_make} ${deleteResult.inv_model}`;
+    if (updateResult) {
+        req.flash("notice", `The ${itemName} was successfully deleted.`);
+        res.redirect("/inv/");
+    } else {
+        req.flash("notice", "Sorry, the deletion failed.");
+        res.status(501).render("inventory/delete-vehicle", {
+            title: "Delete " + itemName,
+            nav,
+            errors: null,
+            inv_id,
+            inv_make,
+            inv_model,
+            inv_year,            
+            inv_price,
+        });
+    }
+}
+
 module.exports = invCont;
