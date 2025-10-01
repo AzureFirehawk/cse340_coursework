@@ -176,7 +176,7 @@ invCont.updateVehicle = async function (req, res, next) {
 }
 
 /* *****************************
- * Delete vehicle view
+ * Build and deliver delete confirmation view
  * ***************************** */
 invCont.confirmDeleteView = async function (req, res, next) {
     const inv_id = parseInt(req.params.inv_id);
