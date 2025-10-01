@@ -32,7 +32,7 @@
         <input type="number" id="invYear" name="inv_year" readonly required value="<%= locals.inv_year %>" placeholder="4-digit year" max="9999">
         <label for="invPrice">Price</label>
         <input type="text" id="invPrice" name="inv_price" readonly required value="<%= locals.inv_price %>" pattern="^[0-9.]+$" placeholder="Decimal or Integer">
-        <button type="submit" disabled>Delete Vehicle</button>
+        <button type="submit">Delete Vehicle</button>
         <input type="hidden" name="inv_id" 
         <% if (locals.inv_id) { %> value="<%= locals.inv_id %>"
         <% } %>>
