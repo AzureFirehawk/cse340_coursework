@@ -26,6 +26,9 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to build the edit vehicle view
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
 
+// Route to delete a vehicle
+router.get("/delete/:inv_id", utilities.handleErrors(invController.confirmDeleteView));
+
 // Form submissions
 router.post(
     "/add-class",
@@ -46,6 +49,11 @@ router.post(
     manValidate.vehicleRules(),
     manValidate.checkUpdateData,
     utilities.handleErrors(invController.updateVehicle)
+)
+
+router.post(
+    "/delete/",
+    utilities.handleErrors(invController.deleteVehicle)
 )
 
 module.exports = router;
