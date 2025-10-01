@@ -74,7 +74,6 @@ validate.vehicleRules = () => {
         body("inv_description", "Vehicle description required")
             .trim()
             .notEmpty().withMessage("Vehicle description required.").bail()
-            .matches(/^[a-zA-Z0-9 ]+$/).withMessage("Please provide a valid description.")
             .escape(),
         
         body("inv_image", "Vehicle image required")
@@ -113,7 +112,7 @@ validate.checkVehicleData = async (req, res, next) => {
             errors,
             title: "Add Vehicle",
             nav,
-            classificationList,
+            classification_id,
             inv_make,
             inv_model,
             inv_year,

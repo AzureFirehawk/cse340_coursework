@@ -44,7 +44,7 @@ router.post(
 router.post(
     "/update/",
     manValidate.vehicleRules(),
-    manValidate.checkVehicleData,
+    manValidate.checkUpdateData,
     utilities.handleErrors(invController.updateVehicle)
 )
 

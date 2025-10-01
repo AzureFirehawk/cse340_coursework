@@ -145,26 +145,29 @@ invCont.editInventoryView = async function (req, res, next) {
 
 invCont.updateVehicle = async function (req, res, next) {
     let nav = await utilities.getNav();
-    const { inv_id, inv_make, inv_model, inv_year, inv_color, inv_image, inv_thumbnail, inv_price, inv_miles, inv_description, classification_id } = req.body;
-    const updateResult = await invModel.updateVehicle(inv_id, inv_make, inv_model, inv_year, inv_price, inv_image, inv_thumbnail, inv_description, inv_miles, inv_color, classification_id);
-    const itemName = `${inv_make} ${inv_model}`;
+    const { inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body;
+    const updateResult = await invModel.updateVehicle(inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id);
     if (updateResult) {
+        const itemName = `${updateResult.inv_make} ${updateResult.inv_model}`;
         req.flash("notice", `The ${itemName} was successfully updated.`);
         res.redirect("/inv/");
     } else {
+        const itemName = `${inv_make} ${inv_model}`;
+        const classificationList = await utilities.buildClassificationList(classification_id);
         req.flash("notice", "Sorry, the update failed.");
         res.status(501).render("inventory/edit-vehicle", {
             title: "Edit " + itemName,
             nav,
+            classificationList,
             errors: null,
             inv_id,
             inv_make,
             inv_model,
-            inv_year,
-            inv_price,
+            inv_description,
             inv_image,
             inv_thumbnail,
-            inv_description,
+            inv_price,
+            inv_year,
             inv_miles,
             inv_color,
             classification_id
