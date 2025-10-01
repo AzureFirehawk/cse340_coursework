@@ -130,4 +130,35 @@ validate.checkVehicleData = async (req, res, next) => {
     next();
 }
 
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_id, inv_make, inv_model, inv_year, inv_color, inv_image, inv_thumbnail, inv_price, inv_miles, inv_description, classification_id } = req.body;
+    let errors = [];
+    const data = await managementModel.getClassifications();
+    const classificationList = await utilities.buildClassificationList(data);
+    const itemName = `${inv_make} ${inv_model}`;
+    errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav();
+        res.render("inventory/edit-vehicle", {
+            errors,
+            title: "Edit " + itemName,
+            nav,
+            classificationList,
+            inv_id,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_color,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_description,
+            classification_id
+        });
+        return;
+    }
+    next();
+}
+
 module.exports = validate;
