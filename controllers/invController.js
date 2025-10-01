@@ -202,9 +202,8 @@ invCont.deleteVehicle = async function (req, res, next) {
     let nav = await utilities.getNav();
     const { inv_id } = req.body;
     const deleteResult = await invModel.deleteVehicle(inv_id);
-    const itemName = `${deleteResult.inv_make} ${deleteResult.inv_model}`;
-    if (updateResult) {
-        req.flash("notice", `The ${itemName} was successfully deleted.`);
+    if (deleteResult) {
+        req.flash("notice", `The vehicle was successfully deleted.`);
         res.redirect("/inv/");
     } else {
         req.flash("notice", "Sorry, the deletion failed.");
