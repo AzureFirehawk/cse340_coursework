@@ -332,6 +332,11 @@ h1 {
   border-color: #00ff00;
 }
 
+.account-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Management views */
 
 #management-links {
