@@ -114,6 +114,7 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
  * Middleware to check token validity
  * ************************************ */
 Util.checkJWTToken = (req, res, next) => {
+    res.locals.loggedin = 0;
     if (req.cookies.jwt) {
         jwt.verify(
             req.cookies.jwt,
@@ -142,6 +143,21 @@ Util.checkLogin = (req, res, next) => {
     } else {
         req.flash("notice", "Please log in to continue.");
         res.redirect("/account/login");
+    }
+}
+
+/* ***************************************
+ * Middleware to check account type
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+    if (res.locals.loggedin && res.locals.accountData) {
+        const { account_type } = res.locals.accountData;
+        if (account_type === "Admin" || account_type === "Employee") {
+            return next();
+        }
+    } else {
+        req.flash("notice", "You must be logged in with as an employee or admin to access this page.");
+        return res.redirect("/account/login");
     }
 }
 
