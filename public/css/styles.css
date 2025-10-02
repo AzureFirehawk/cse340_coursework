@@ -26,6 +26,12 @@ header {
   font-weight: 700;
 }
 
+#tools {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 #tools a {
   font-size: 1rem;
   text-decoration: none;
