@@ -5,8 +5,9 @@
     <div id="tools">
         <% if (loggedin) { %>
             <a href="/account/" title="Go to acount management">
-                Welcome <%= account.account_firstname %>
+                Welcome <%= accountData && accountData.account_firstname ? accountData.account_firstname : "User" %>
             </a>
+            <p>—</p>
             <a href="/account/logout" title="Click to log out">Logout</a>
         <% } else { %>
             <a title="Click to log in" href="/account/login">My Account</a>
