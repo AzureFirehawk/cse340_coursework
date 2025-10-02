@@ -155,10 +155,9 @@ Util.checkAccountType = (req, res, next) => {
         if (account_type === "Admin" || account_type === "Employee") {
             return next();
         }
-    } else {
-        req.flash("notice", "You must be logged in with as an employee or admin to access this page.");
-        return res.redirect("/account/login");
     }
+    req.flash("notice", "You must be logged in as an employee or admin to access this page.");
+    return res.redirect("/account/login");
 }
 
 module.exports = Util;
