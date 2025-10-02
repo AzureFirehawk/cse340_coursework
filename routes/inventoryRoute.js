@@ -12,22 +12,37 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInventoryId));
 
 // Route to build the inventory management view
-router.get("/", invController.buildManagement);
+router.get("/",
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildManagement));
 
 // Route to build the add classification view
-router.get("/add-class", invController.buildAddClassification);
+router.get("/add-class",
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildAddClassification));
 
 // Route to build the add vehicle view
-router.get("/add-vehicle", invController.buildAddVehicle);
+router.get("/add-vehicle",
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildAddVehicle));
 
 // Route for management table view
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
 // Route to build the edit vehicle view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+router.get("/edit/:inv_id",
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.editInventoryView));
 
 // Route to delete a vehicle
-router.get("/delete/:inv_id", utilities.handleErrors(invController.confirmDeleteView));
+router.get("/delete/:inv_id",
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.confirmDeleteView));
 
 // Form submissions
 router.post(
