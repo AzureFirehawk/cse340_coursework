@@ -36,7 +36,7 @@ router.post(
 // Update Processing
 router.post(
     "/update",
-    regValidate.registrationRules(),
+    regValidate.updateRules(),
     regValidate.checkUpdateData,
     utilities.handleErrors(accountController.updateAccount)
 );
