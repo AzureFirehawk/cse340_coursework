@@ -142,4 +142,58 @@ async function buildUpdate(req, res, next) {
     });
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate };
+/* ********************************
+ * Process account update
+ * ******************************** */
+async function updateAccount(req, res, next) {
+    let nav = await utilities.getNav();
+    const { account_id, account_firstname, account_lastname, account_email } = req.body;
+    try {
+        if (!account_firstname || !account_lastname || !account_email) {
+            req.flash("notice", "Please fill out all fields.");
+            return res.status(400).render("account/update", {
+                title: "Update Account",
+                nav,
+                errors: null,
+                account_id,
+                account_firstname,
+                account_lastname,
+                account_email
+            });
+        }
+        const updateResult = await accountModel.updateAccount(
+            account_id,
+            account_firstname,
+            account_lastname,
+            account_email
+        );
+        if (updateResult) {
+            req.flash("notice", "Account information updated.");
+            return res.status(200).redirect("/account/");
+        } else {
+            req.flash("notice", "Update failed, please try again.");
+            return res.status(500).render("account/update", {
+                title: "Update Account",
+                nav,
+                errors: null,
+                account_id,
+                account_firstname,
+                account_lastname,
+                account_email
+            });
+        }
+    } catch (error) {
+        req.flash("notice", "An error occured, please try again.");
+        return res.status(500).render("account/update", {
+            title: "Update Account",
+            nav,
+            errors: null,
+            account_id,
+            account_firstname,
+            account_lastname,
+            account_email
+        });
+    };
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount };
