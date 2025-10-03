@@ -196,4 +196,45 @@ async function updateAccount(req, res, next) {
     };
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount };
+/* ********************************
+ * Process account password update
+ * ******************************** */
+async function updatePassword(req, res, next) {
+    let nav = await utilities.getNav();
+    const { account_id, account_password } = req.body;
+    try {
+        if (!account_password) {
+            req.flash("notice", "New password is required.");
+            return res.status(400).render("account/update", {
+                title: "Update Account",
+                nav,
+                errors: null,
+                account_id,
+            });
+        }
+        const hashedPassword = await bcrypt.hashSync(account_password, 10);
+        const updateResult = await accountModel.updatePassword(account_id, hashedPassword);
+        if (updateResult) {
+            req.flash("notice", "Password updated successfully.");
+            return res.status(200).redirect("/account/");
+        } else {
+            req.flash("notice", "Update failed, please try again.");
+            return res.status(500).render("account/update", {
+                title: "Update Account",
+                nav,
+                errors: null,
+                account_id,
+            });
+        }
+    } catch (error) {
+        req.flash("notice", "An error occured, please try again.");
+        return res.status(500).render("account/update", {
+            title: "Update Account",
+            nav,
+            errors: null,
+            account_id,
+        });
+    };
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount, updatePassword };
