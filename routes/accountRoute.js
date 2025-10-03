@@ -33,4 +33,12 @@ router.post(
     utilities.handleErrors(accountController.accountLogin)
 );
 
+// Update Processing
+router.post(
+    "/update",
+    regValidate.updateRules(),
+    regValidate.checkUpdateData,
+    utilities.handleErrors(accountController.updateAccount)
+);
+
 module.exports = router;
