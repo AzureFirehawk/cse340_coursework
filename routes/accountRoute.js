@@ -14,6 +14,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route to build register view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+// Route to update account view
+router.get("/edit/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
+
 // Post register submission
 router.post(
     "/register",
