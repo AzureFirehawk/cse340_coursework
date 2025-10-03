@@ -1,0 +1,36 @@
+<!-- Content Heading. Determine if Title exists, otherwise redirect to home -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+<% } else { res.redirect('/'); } %>
+
+<!-- Message block -->
+<%- messages() %>
+
+<!-- Error block -->
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+        <% }); %>
+    </ul>
+<% } %>
+
+<div>
+    <form action="/account/update" method="post" id="updateForm">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="first_name" required value="<%= locals.first_name %>" pattern="^[a-zA-Z ]+$">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="last_name" required value="<%= locals.last_name %>" pattern="^[a-zA-Z ]+$">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="<%= locals.email %>">
+        <button type="submit">Update Account</button>
+        <input type="hidden" name="account_id"
+        <% if (locals.account_id) { %>
+            value="<%= locals.account_id %>"
+        <% } %>>
+    </form>
+</div>
