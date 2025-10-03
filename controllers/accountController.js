@@ -135,10 +135,26 @@ async function buildAccount(req, res, next) {
  * ******************************** */
 async function buildUpdate(req, res, next) {
     let nav = await utilities.getNav();
+    const account_id = parseInt(req.params.account_id);
+    const accountData = await accountModel.getAccountById(account_id);
+    if (!accountData) {
+        req.flash("notice", "Account not found.");
+        return res.redirect("/account/");
+    }
+    if (account_id !== res.locals.accountData.account_id) {
+        req.flash("notice", "You do not have permission to update this account.");
+        return res.redirect("/account/");
+    }
+
+
     res.render("account/update", {
         title: "Update Account",
         nav,
-        errors: null
+        errors: null,
+        account_id,
+        account_firstname: accountData.account_firstname,
+        account_lastname: accountData.account_lastname,
+        account_email: accountData.account_email
     });
 }
 
@@ -168,7 +184,13 @@ async function updateAccount(req, res, next) {
             account_email
         );
         if (updateResult) {
+            const refreshData = await accountModel.getAccountById(account_id);
+            delete refreshData.account_password;
+            const accessToken = jwt.sign(refreshData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+            res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
             req.flash("notice", "Account information updated.");
+            req.flash("notice", "Name: " + account_firstname + " " + account_lastname)
+            req.flash("notice", "Email: " + account_email);
             return res.status(200).redirect("/account/");
         } else {
             req.flash("notice", "Update failed, please try again.");
@@ -237,4 +259,13 @@ async function updatePassword(req, res, next) {
     };
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount, updatePassword };
+/* ********************************
+ * Process logout
+ * ******************************** */
+async function accoungLogout(req, res, next) {
+    res.clearCookie("jwt");
+    res.flash("notice", "You have been logged out.");
+    return res.redirect("/");
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount, updatePassword, accoungLogout };
