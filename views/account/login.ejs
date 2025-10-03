@@ -22,9 +22,9 @@
 <!-- Login form -->
 <div class="account-form">
     <form action="/account/login" method="post">
-        <label for="email">Email</label>
+        <label for="loginEmail">Email</label>
         <input type="email" name="account_email" id="loginEmail" required value="<%= locals.account_email %>">
-        <label for="password">Password</label>
+        <label for="loginPassword">Password</label>
         <input type="password" name="account_password" id="loginPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
         <button type="submit">Login</button>
         <h2>No account? <a href="/account/register">Register</a></h2>
