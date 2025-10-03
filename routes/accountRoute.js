@@ -36,9 +36,17 @@ router.post(
 // Update Processing
 router.post(
     "/update",
-    regValidate.updateRules(),
+    regValidate.registrationRules(),
     regValidate.checkUpdateData,
     utilities.handleErrors(accountController.updateAccount)
+);
+
+// Update Password Processing
+router.post(
+    "/update-password",
+    regValidate.passwordRules(),
+    regValidate.checkPasswordData,
+    utilities.handleErrors(accountController.updatePassword)
 );
 
 module.exports = router;
