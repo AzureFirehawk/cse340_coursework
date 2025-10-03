@@ -17,6 +17,9 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 // Route to update account view
 router.get("/edit/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
 
+// Route for logout
+router.get("/logout", utilities.checkLogin, utilities.handleErrors(accountController.accountLogout));
+
 // Post register submission
 router.post(
     "/register",

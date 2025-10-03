@@ -262,10 +262,10 @@ async function updatePassword(req, res, next) {
 /* ********************************
  * Process logout
  * ******************************** */
-async function accoungLogout(req, res, next) {
+async function accountLogout(req, res, next) {
     res.clearCookie("jwt");
     res.flash("notice", "You have been logged out.");
     return res.redirect("/");
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount, updatePassword, accoungLogout };
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdate, updateAccount, updatePassword, accountLogout };
