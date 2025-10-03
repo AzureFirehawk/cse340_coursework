@@ -123,7 +123,7 @@ async function accountLogin(req, res) {
  * ******************************** */
 async function buildAccount(req, res, next) {
     let nav = await utilities.getNav();
-    res.render("account/", {
+    res.render("account/home", {
         title: "Account",
         nav,
         errors: null
