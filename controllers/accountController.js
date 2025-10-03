@@ -213,7 +213,7 @@ async function updatePassword(req, res, next) {
             });
         }
         const hashedPassword = await bcrypt.hashSync(account_password, 10);
-        const updateResult = await accountModel.updatePassword(account_id, hashedPassword);
+        const updateResult = await accountModel.updateAccountPassword(account_id, hashedPassword);
         if (updateResult) {
             req.flash("notice", "Password updated successfully.");
             return res.status(200).redirect("/account/");
