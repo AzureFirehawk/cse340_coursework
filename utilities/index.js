@@ -63,7 +63,7 @@ Util.buildClassificationGrid = async function(data) {
  * Build the vehicle view HTML
  * ************************************ */
 Util.buildVehicle = function (data, isFavorite=false, isLoggedIn=false) {
-    let vehicle
+    let vehicle = "";
     if (data) {
         vehicle = '<div id="vehicle-display">';
         vehicle += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model} on CSE Motors">`;
@@ -88,7 +88,7 @@ Util.buildVehicle = function (data, isFavorite=false, isLoggedIn=false) {
         vehicle += '</div>';
         vehicle += '</div>';
     } else {
-        vehicle += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+        vehicle = '<p class="notice">Sorry, no matching vehicle could be found.</p>'
     }
     return vehicle;
 }
