@@ -44,7 +44,8 @@ async function getFavoritesByAccountId(account_id) {
             SELECT i.* FROM public.favorites AS f
             JOIN public.inventory AS i
             ON f.inv_id = i.inv_id
-            WHERE f.account_id = $1;
+            WHERE f.account_id = $1
+            ORDER BY i.inv_make ASC, i.inv_model ASC;
         `;
         const data = await pool.query(sql, [account_id]);
         return data.rows;
