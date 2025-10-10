@@ -34,7 +34,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
         if (accountData && accountData.account_id) {
             isFavorite = await favModel.isFavorite(accountData.accountId, inv_id);
         }
-        const vehicle = await utilities.buildVehicle(data);
+        const vehicle = await utilities.buildVehicle(data, isFavorite, !!accountData);
         res.render("./inventory/detail", {
             title: data.inv_make + " " + data.inv_model,
             nav,

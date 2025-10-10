@@ -62,7 +62,7 @@ Util.buildClassificationGrid = async function(data) {
 /* ***************************************
  * Build the vehicle view HTML
  * ************************************ */
-Util.buildVehicle = function (data) {
+Util.buildVehicle = function (data, isFavorite=false, isLoggedIn=false) {
     let vehicle
     if (data) {
         vehicle = '<div id="vehicle-display">';
@@ -73,14 +73,18 @@ Util.buildVehicle = function (data) {
         vehicle += `<p><strong>Description: </strong> ${data.inv_description}</p>`;
         vehicle += `<p><strong>Miles:</strong> ${new Intl.NumberFormat("en-US").format(data.inv_miles)}</p>`;
         vehicle += `<p><strong>Color:</strong> ${data.inv_color}</p>`;
+        if (isLoggedIn) {
         vehicle += `
-            <form id="favoriteForm" method="post" action="/favorites/${isFavorite ? 'remove' : 'add'}">
-                <input type="hidden" name="inv_id" value="${data.inv_id}">
-                <button type="submit" id="favoriteBtn" class="${isFavorite ? 'favorited' : ''}">
-                    ${isFavorite ? '💔 Remove from Favorites' : '♥️ Add to Favorites'}
-                </button >
-            </form>
-        `
+                <form id="favoriteForm" method="post" action="/favorites/${isFavorite ? 'remove' : 'add'}">
+                    <input type="hidden" name="inv_id" value="${data.inv_id}">
+                    <button type="submit" id="favoriteBtn" class="${isFavorite ? 'favorited' : ''}">
+                        ${isFavorite ? '💔 Remove from Favorites' : '♥️ Add to Favorites'}
+                    </button >
+                </form>
+            `
+        } else {
+            vehicle += `<p class="login-notice">Please log in to add to favorites.</p>`
+        }
         vehicle += '</div>';
         vehicle += '</div>';
     } else {
