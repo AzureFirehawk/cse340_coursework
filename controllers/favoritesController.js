@@ -8,26 +8,40 @@ const favCont = {};
 // Add vehicle to favorites
 favCont.addFavorite = async function (req, res, next) {
     try {
+        if (!res.locals.accountData) {
+            req.flash("notice", "Please log in to add favorites.");
+            return res.redirect("/account/login");
+        }
         const account_id = res.locals.accountData.account_id;
-        const inv_id = parseInt(req.body.inv_id);
+        const inv_id = req.body.inv_id;
         await favModel.addFavorite(account_id, inv_id);
-        return res.json({ success: true, message: "Vehicle added to favorites." });
+        req.flash("success", "Vehicle added to favorites.");
+        res.redirect(`/inv/detail/${inv_id}`);
     } catch (error) {
-        console.error("Error adding vehicle to favorites: " + error);
-        return res.status(500).json({ success: false, message: "Error adding vehicle to favorites." });
+        console.error("Error adding favorite:", error);
+        next(error);
     }
 }
+
 
 // Remove vehicle from favorites
 favCont.removeFavorite = async function (req, res, next) {
     try {
+        if (!res.locals.accountData) {
+        req.flash("notice", "Please log in to remove favorites.");
+        return res.redirect("/account/login");
+        }
+
         const account_id = res.locals.accountData.account_id;
-        const inv_id = parseInt(req.body.inv_id);
+        const inv_id = req.body.inv_id;
+
         await favModel.removeFavorite(account_id, inv_id);
-        return res.json({ success: true, message: "Vehicle removed from favorites." });
+        req.flash("success", "Vehicle removed from favorites.");
+
+        res.redirect(`/inv/detail/${inv_id}`);
     } catch (error) {
-        console.error("Error removing vehicle from favorites: " + error);
-        return res.status(500).json({ success: false, message: "Error removing vehicle from favorites." });
+        console.error("Error removing favorite:", error);
+        next(error);
     }
 }
 
