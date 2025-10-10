@@ -19,6 +19,7 @@ const pool = require("./database/")
 const accountRoute = require("./routes/accountRoute")
 const parser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const favoriteRoute = require("./routes/favoritesRoute")
 
 /* ***********************
  * Middleware
@@ -70,6 +71,9 @@ app.use("/inv", inventoryRoute)
 
 // Account routes
 app.use("/account", accountRoute)
+
+// Favorites routes
+app.use("/favorites", favoriteRoute)
 
 // Error route
 app.use("/error", errorRoute)
