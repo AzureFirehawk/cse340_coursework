@@ -1,5 +1,6 @@
 const e = require("connect-flash");
 const favModel = require("../models/favorites-model");
+const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
 const favCont = {};
@@ -47,3 +48,15 @@ favCont.buildFavorites = async function (req, res, next) {
         next(error);
     }
 }
+
+favCont.checkFavoriteStatus = async function (account_id, inv_id) {
+    try {
+        const isFavorite = await favModel.checkFavoriteStatus(account_id, inv_id);
+        return isFavorite;
+    } catch (error) {
+        console.error("Error checking favorite status: " + error);
+        throw error;
+    }
+}
+
+module.exports = favCont;
