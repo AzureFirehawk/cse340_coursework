@@ -251,3 +251,11 @@ WHERE inv_model = 'Hummer'
 UPDATE public.inventory
 SET inv_image = REPLACE (inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE (inv_thumbnail, '/images/', '/images/vehicles/');
+
+-- Create 'favorites' table to connect inventory and account tables
+CREATE TABLE IF NOT EXISTS public.favorites (
+    favorite_id SERIAL PRIMARY KEY,
+    account_id INT NOT NULL REFERENCES public.account(account_id) ON DELETE CASCADE,
+    inv_id INT NOT NULL REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+    UNIQUE (account_id, inv_id)
+);
