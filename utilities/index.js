@@ -73,6 +73,14 @@ Util.buildVehicle = function (data) {
         vehicle += `<p><strong>Description: </strong> ${data.inv_description}</p>`;
         vehicle += `<p><strong>Miles:</strong> ${new Intl.NumberFormat("en-US").format(data.inv_miles)}</p>`;
         vehicle += `<p><strong>Color:</strong> ${data.inv_color}</p>`;
+        vehicle += `
+            <form id="favoriteForm" method="post" action="/favorites/${isFavorite ? 'remove' : 'add'}">
+                <input type="hidden" name="inv_id" value="${data.inv_id}">
+                <button type="submit" id="favoriteBtn" class="${isFavorite ? 'favorited' : ''}">
+                    ${isFavorite ? '💔 Remove from Favorites' : '♥️ Add to Favorites'}
+                </button >
+            </form>
+        `
         vehicle += '</div>';
         vehicle += '</div>';
     } else {
