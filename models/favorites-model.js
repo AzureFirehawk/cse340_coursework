@@ -52,3 +52,9 @@ async function getFavoritesByAccountId(account_id) {
         new Error("Get Favorites Error");
     }
 }
+
+module.exports = {
+    addFavorite,
+    removeFavorite,
+    getFavoritesByAccountId,
+};
