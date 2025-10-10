@@ -54,8 +54,25 @@ async function getFavoritesByAccountId(account_id) {
     }
 }
 
+/* ****************************
+ * Check favorite status
+ * ************************** */
+async function checkFavoriteStatus(account_id, inv_id) {
+    try {
+        const sql = `
+            SELECT * FROM public.favorites
+            WHERE account_id = $1 AND inv_id = $2;
+        `;
+        const data = await pool.query(sql, [account_id, inv_id]);
+        return data.rowCount > 0;
+    } catch (error) {
+        new Error("Check Favorite Status Error");
+    }
+}
+
 module.exports = {
     addFavorite,
     removeFavorite,
     getFavoritesByAccountId,
+    checkFavoriteStatus
 };
