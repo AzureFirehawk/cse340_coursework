@@ -1,5 +1,6 @@
 const e = require("connect-flash");
 const invModel = require("../models/inventory-model");
+const favModel = require("../models/favorites-model");
 const utilities = require("../utilities/");
 
 const invCont = {};
@@ -22,16 +23,28 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 invCont.buildByInventoryId = async function (req, res, next) {
-    const inv_id = req.params.inv_id;
-    const data = await invModel.getVehicleById(inv_id);
-    const vehicle = await utilities.buildVehicle(data);
-    let nav = await utilities.getNav();
-    res.render("./inventory/detail", {
-        title: data.inv_make + " " + data.inv_model,
-        nav,
-        vehicle,
-        errors: null
-    })
+    try{
+        const inv_id = req.params.inv_id;
+        const data = await invModel.getVehicleById(inv_id);
+        let nav = await utilities.getNav();
+
+        let isFavorite = false;
+        const accountData = res.locals.accountData;
+
+        if (accountData && accountData.account_id) {
+            isFavorite = await favModel.isFavorite(accountData.accountId, inv_id);
+        }
+        const vehicle = await utilities.buildVehicle(data);
+        res.render("./inventory/detail", {
+            title: data.inv_make + " " + data.inv_model,
+            nav,
+            vehicle,
+            errors: null
+        })
+    } catch (error) {
+        console.error("Error retrieving vehicle: " + error);
+        next(error);
+    }
 }
 
 /* *****************************
